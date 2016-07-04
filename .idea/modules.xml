@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Prematriculador.iml" filepath="$PROJECT_DIR$/.idea/modules/Prematriculador.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Prematriculador_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Prematriculador_main.iml" group="Prematriculador" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Prematriculador_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Prematriculador_test.iml" group="Prematriculador" />
+    </modules>
+  </component>
+</project>
