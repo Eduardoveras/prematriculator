@@ -8,68 +8,74 @@ import javax.jws.WebService;
 import Class.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebService(endpointInterface = "Service.Registry")
 public class RegistryImpl implements Registry{
 
-    private Map<String, Student> registry = new HashMap<>();
-
     @Override
     public void AddNewStudent(String matricula, String firstName, String lastName, String career){
-        registry.put(matricula, new Student(matricula, firstName, lastName, career));
+        Resource.registry.put(matricula, new Student(matricula, firstName, lastName, career));
         System.out.println("\n\nAdd new Student!!!");
+        System.out.println("Database size: " + Resource.registry.size() + " students");
+
     }
 
     @Override
     public boolean ModifyStudentInfo(String matricula, String firstName, String lastName, String career){
-        Student student = registry.remove(matricula);
+        Student student = Resource.registry.remove(matricula);
         boolean modified = false;
 
-        if(student == null)
+        if(student == null){
+            System.out.println("\n\nNo changes made. Student does not exist");
             return false;
+        }
 
         if(!student.getFirstName().equals(firstName)){
             student.setFirstName(firstName);
+            System.out.println("\n\nModified first name!!!");
             modified = true;
         }
 
         if(!student.getLastName().equals(lastName)){
             student.setLastName(lastName);
+            System.out.println("\n\nModified last name!!!");
             modified = true;
         }
 
         if(!student.getCareer().equals(career)){
             student.setCareer(career);
+            System.out.println("\n\nModify career!!!");
             modified = true;
         }
 
-        registry.put(matricula, student);
+        Resource.registry.put(matricula, student);
 
         return modified;
     }
 
     @Override
     public void DeleteStudent(String matricula){
-        registry.remove(matricula);
+        Resource.registry.remove(matricula);
+        System.out.println("\n\nDeleted Student!!!");
     }
 
     @Override
     public Student FetchStudent(String matricula){
-
-        return registry.get(matricula);
+        System.out.println("\n\nFetching Student!!!");
+        return Resource.registry.get(matricula);
     }
 
     @Override
     public ArrayList<Student> FetchAllStudents(){
 
+        System.out.println("\n\nFetching database!!!");
         ArrayList<Student> students = new ArrayList<>();
+        System.out.println("Database size: " + students.size() + " students");
 
         for (String matricula:
-             registry.keySet()) {
-            students.add(registry.get(matricula));
+                Resource.registry.keySet()) {
+            students.add(Resource.registry.get(matricula));
         }
 
         return students;
@@ -78,39 +84,41 @@ public class RegistryImpl implements Registry{
     @Override
     public boolean AssignCourseToStudent(String matricula, String code, String name){
 
-        Student student = registry.remove(matricula);
+        Student student = Resource.registry.remove(matricula);
 
         if(student.getCourses() == null){
             student.getCourses().add(new Course(code, name));
 
-            registry.put(matricula, student);
-
+            Resource.registry.put(matricula, student);
+            System.out.println("\n\nAdding new course!!!");
             return true;
         }
         else if(!isCourseIncluded(code, student.getCourses())){
             student.getCourses().add(new Course(code, name));
 
-            registry.put(matricula, student);
-
+            Resource.registry.put(matricula, student);
+            System.out.println("\n\nAdding new course!!!");
             return true;
         }
         else{
 
-            registry.put(matricula, student);
-
+            Resource.registry.put(matricula, student);
+            System.out.println("\n\nCourse already registered!!!");
             return false;
         }
     }
 
     @Override
     public boolean RemoveStudentCourse(String matricula, String code, String name){
-        Student student = registry.remove(matricula);
+        Student student = Resource.registry.remove(matricula);
 
         try {
             student.getCourses().remove(new Course(code, name));
+            System.out.println("\n\nRemoved course!!!");
             return true;
         } catch(Exception exp){
             System.out.println(exp.getMessage());
+            System.out.println("\n\nError!!!");
             return false;
         }
     }
