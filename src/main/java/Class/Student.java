@@ -11,7 +11,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String career;
-    private List<Course> coures;
+    private List<Course> courses;
 
     public Student(){
 
@@ -20,7 +20,7 @@ public class Student {
     public Student(String matricula, String firstName, String lastName, String career){
 
         this.setMatricula(matricula);
-        this.firstName = firstName;
+        this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setCareer(career);
     }
@@ -49,11 +49,19 @@ public class Student {
         this.career = career;
     }
 
-    public List<Class.Course> getCoures() {
-        return coures;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setCoures(List<Class.Course> coures) {
-        this.coures = coures;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }
