@@ -20,6 +20,7 @@ public class RegistryImpl implements Registry{
     @Override
     public void AddNewStudent(String matricula, String firstName, String lastName, String career){
         registry.put(matricula, new Student(matricula, firstName, lastName, career));
+        System.out.println("\n\nAdd new Student!!!");
     }
 
     @Override
