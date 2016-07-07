@@ -10,7 +10,7 @@ import javax.jws.soap.SOAPBinding.Style;
 
 import Class.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @WebService
 @SOAPBinding(style = Style.RPC)
@@ -20,14 +20,20 @@ public interface Registry {
     void AddNewStudent(String matricula, String firstName, String lastName, String career);
 
     @WebMethod
-    boolean ModifyStudentInfo(String firstName, String lastName, String career);
+    boolean ModifyStudentInfo(String matricula, String firstName, String lastName, String career);
 
     @WebMethod
-    boolean DeleteStudent(String matricula);
+    void DeleteStudent(String matricula);
 
     @WebMethod
     Student FetchStudent(String matricula);
 
     @WebMethod
-    List<Student> FetchAllStudents();
+    ArrayList<Student> FetchAllStudents();
+
+    @WebMethod
+    boolean AssignCourseToStudent(String matricula, String code, String name);
+
+    @WebMethod
+    boolean RemoveStudentCourse(String matricula, String code, String name);
 }
