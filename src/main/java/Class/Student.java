@@ -3,6 +3,7 @@
  */
 package Class;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
@@ -11,7 +12,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String career;
-    private List<Course> courses;
+    private ArrayList<Course> courses;
 
     public Student(){
 
@@ -49,11 +50,11 @@ public class Student {
         this.career = career;
     }
 
-    public List<Course> getCourses() {
+    public ArrayList<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
     }
 

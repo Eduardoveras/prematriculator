@@ -62,7 +62,7 @@ public class RegistryImpl implements Registry{
 
     @Override
     public Student FetchStudent(String matricula){
-        System.out.println("\n\nFetching Student!!!");
+        System.out.println("\n\nFetching Student " + matricula + "!!!");
         return Resource.registry.get(matricula);
     }
 
@@ -90,7 +90,9 @@ public class RegistryImpl implements Registry{
         Student student = Resource.registry.remove(matricula);
 
         if(student.getCourses() == null){
+            student.setCourses(new ArrayList<>());
             student.getCourses().add(new Course(code, name));
+            System.out.println(matricula + " " + code + " " + name);
 
             Resource.registry.put(matricula, student);
             System.out.println("\n\nAdding new course!!!");
