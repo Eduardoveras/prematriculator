@@ -11,6 +11,8 @@ import javax.jws.soap.SOAPBinding.Style;
 import Class.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @WebService
 @SOAPBinding(style = Style.RPC)
@@ -29,7 +31,7 @@ public interface Registry {
     Student FetchStudent(String matricula);
 
     @WebMethod
-    ArrayList<Student> FetchAllStudents();
+    Student[] FetchAllStudents();
 
     @WebMethod
     boolean AssignCourseToStudent(String matricula, String code, String name);

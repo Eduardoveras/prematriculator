@@ -8,6 +8,8 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import Class.*;
 import Service.Registry;
@@ -24,10 +26,11 @@ public class PreMatrixJavaClient {
         Registry registry = service.getPort(Registry.class);
 
         registry.AddNewStudent("20112319", "Djidjelly", "Siclait", "ISC");
+        registry.AddNewStudent("20120844", "Eduardo", "Veras", "ISC");
 
-        ArrayList<Student> students = registry.FetchAllStudents();
+        Student[] students = registry.FetchAllStudents();
 
-        System.out.println(students.size() + "\n");
+        System.out.println(students.length + "\n");
 
         for (Student s:
              students) {

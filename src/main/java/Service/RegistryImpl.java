@@ -67,17 +67,20 @@ public class RegistryImpl implements Registry{
     }
 
     @Override
-    public ArrayList<Student> FetchAllStudents(){
+    public Student[] FetchAllStudents(){
 
         System.out.println("\n\nFetching database!!!");
-        ArrayList<Student> students = new ArrayList<>();
-        System.out.println("Database size: " + students.size() + " students");
+        Student[] students = new Student[Resource.registry.size()];
+
+        int count = 0;
 
         for (String matricula:
                 Resource.registry.keySet()) {
-            students.add(Resource.registry.get(matricula));
+            students[count] = Resource.registry.get(matricula);
+            count++;
         }
 
+        System.out.println("Database size: " + students.length + " students");
         return students;
     }
 
