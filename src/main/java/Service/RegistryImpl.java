@@ -118,8 +118,17 @@ public class RegistryImpl implements Registry{
         Student student = Resource.registry.remove(matricula);
 
         try {
-            student.getCourses().remove(new Course(code, name));
+
+            for (int i = 0; i < student.getCourses().size(); i++) {
+                Course course = student.getCourses().get(i);
+
+                if (course.getCode().equals(code) && course.getName().equals(name))
+                    student.getCourses().remove(i);
+            }
+
             System.out.println("\n\nRemoved course!!!");
+
+            Resource.registry.put(matricula, student);
             return true;
         } catch(Exception exp){
             System.out.println(exp.getMessage());
